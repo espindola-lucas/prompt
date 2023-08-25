@@ -12,3 +12,6 @@ wget https://github.com/JanDeDobbeleer/oh-my-posh/releases/latest/download/theme
 - run the following command to make use of oh my posh
 eval "$(oh-my-posh --init --shell bash --config ~/.poshthemes/themes/<your_theme>.omp.json)"
 - to make a permanent change, edit the .bashrc file with the above command.
+
+# Screenshot
+![Screenshot from 2023-08-25 15-33-29](https://github.com/espindola-lucas/prompt/assets/55778806/87c09e96-7676-47ed-8123-1cb172ea2422)
