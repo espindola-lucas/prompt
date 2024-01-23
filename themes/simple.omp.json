@@ -1,0 +1,104 @@
+{
+  "$schema": "https://raw.githubusercontent.com/JanDeDobbeleer/oh-my-posh/main/themes/schema.json",
+  "blocks": [
+    {
+      "alignment": "left",
+      "segments": [
+        {
+          "foreground": "#3A86FF",
+          "leading_diamond": " ",
+          "style": "plain",
+          "template": " {{ if .WSL }}WSL at {{ end }}{{.Icon }} ",
+          "type": "os"
+        },
+        {
+          "foreground": "#FFBD00",
+          "style": "plain",
+          "template": "{{ .UserName }} ",
+          "type": "session"
+        },
+        {
+          "foreground": "#33DD2D",
+          "properties": {
+            "style": "folder"
+          },
+          "style": "powerline",
+          "template": "\ue5ff {{ if or (eq .Location \"/home/lucas/Documents/homeOffice/mapuche\") (eq .Location \"/home/lucas/Documents/repositories/prompt\") (eq .Location \"/home/lucas/Documents/homeOffice/mapuche-automation\") }} {{ base .Path }} {{ else }} {{ .Path }} {{ end }}/ ",
+          "type": "path"
+        },
+        {
+          "foreground": "#F62F2E",
+          "properties": {
+            "fetch_status": true
+          },
+          "style": "plain",
+          "background_templates": [
+            "<#ffffff>on</> {{ .HEAD }}{{if .BranchStatus }} {{ .BranchStatus }}{{ end }}",
+            "{{ if .Working.Changed }} \uf044 {{ .Working.String }}{{ end }}",
+            "{{ if and (.Working.Changed) (.Staging.Changed) }} |{{ end }}",
+            "{{ if .Staging.Changed }} \uf046 {{ .Staging.String }}{{ end }}"
+          ],
+          "type": "git"
+        },
+        {
+          "foreground": "#98C379",
+          "properties": {
+            "fetch_version": true
+          },
+          "style": "plain",
+          "template": "<#ffffff>via</> \ue781 {{ if .PackageManagerIcon }}{{ .PackageManagerIcon }} {{ end }}{{ .Full }} ",
+          "type": "node"
+        },
+        {
+          "type": "php",
+          "style": "powerline",
+          "foreground": "#7A86B8",
+          "background": "#000000",
+          "template": "  {{ .Full }} "
+        },
+        {
+          "type": "docker",
+          "style": "powerline",
+          "foreground": "#ffffff",
+          "background": "#000000",
+          "template": "\uf308 {{ .Context }}"
+        },
+        {
+          "foreground": "#85C980",
+          "style": "diamond",
+          "template": "RAM:{{ (div .PhysicalAvailableMemory 1000000000.0) }}/{{ (div .PhysicalTotalMemory 1000000000.0) }}GB ",
+          "trailing_diamond": " ",
+          "type": "sysinfo"
+        },
+        {
+          "foreground": "#ffffff",
+          "leading_diamond": "\u250b",
+          "properties": {
+            "style": "roundrock",
+            "always_enabled": true
+          },
+          "invert_powerline": true,
+          "style": "diamond",
+          "template": " {{ .FormattedMs }} ",
+          "type": "executiontime"
+        }
+      ],
+      "type": "prompt"
+    },
+    {
+      "alignment": "left",
+      "newline": true,
+      "segments": [
+        {
+          "foreground": "#ffffff",
+          "style": "plain",
+          "template": "$ ",
+          "type": "text"
+        }
+      ],
+      "type": "prompt"
+    }
+  ],
+  "final_space": true,
+  "version": 2
+}
