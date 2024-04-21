@@ -1,24 +1,18 @@
 {
   "$schema": "https://raw.githubusercontent.com/JanDeDobbeleer/oh-my-posh/main/themes/schema.json",
+  "console_title_template": "{{ .Shell }} in {{ .PWD }}",
   "blocks": [
     {
       "alignment": "left",
       "segments": [
         {
-          "foreground": "#3A86FF",
-          "leading_diamond": " ",
-          "style": "plain",
-          "template": " {{ if .WSL }}WSL at {{ end }}{{.Icon }} ",
-          "type": "os"
-        },
-        {
-          "foreground": "#FFBD00",
+          "foreground": "#f1c40f",
           "style": "plain",
           "template": "{{ .UserName }} ",
           "type": "session"
         },
         {
-          "foreground": "#33DD2D",
+          "foreground": "#3498db",
           "properties": {
             "style": "folder"
           },
@@ -27,51 +21,32 @@
           "type": "path"
         },
         {
-          "foreground": "#F62F2E",
-          "properties": {
-            "fetch_status": true
+            "foreground": "#2ecc71",
+            "properties": {
+              "fetch_status": true,
+              "git_icon": "\ue725",
+              "fetch_stash_count": true,
+              "fetch_upstream_icon": true
+            },
+            "style": "plain",
+            "background_templates": [
+              "{{ if or (.Working.Changed) (.Staging.Changed) }} {{ end }}",
+              "{{ if and (gt .Ahead 0) (gt .Behind 0) }} {{ end }}",
+              "{{ if gt .Ahead 0 }} {{ end }}",
+              "{{ if gt .Behind 0 }} {{ end }}"
+            ],
+            "template": "{{ .HEAD }} {{ .BranchStatus }}{{ if .Staging.Changed }} \uf046 {{ .Staging.String }}{{ end }}{{ if and (.Working.Changed) (.Staging.Changed) }} |{{ end }}{{ if .Working.Changed }} \uf044 {{ .Working.String }}{{ end }}{{ if gt .StashCount 0 }} \uf692{{ .StashCount }}{{ end }} ",
+            "type": "git"
           },
-          "style": "plain",
-          "background_templates": [
-            "<#ffffff>on</> {{ .HEAD }}{{if .BranchStatus }} {{ .BranchStatus }}{{ end }}",
-            "{{ if .Working.Changed }} \uf044 {{ .Working.String }}{{ end }}",
-            "{{ if and (.Working.Changed) (.Staging.Changed) }} |{{ end }}",
-            "{{ if .Staging.Changed }} \uf046 {{ .Staging.String }}{{ end }}"
-          ],
-          "type": "git"
-        },
         {
-          "foreground": "#98C379",
-          "properties": {
-            "fetch_version": true
-          },
-          "style": "plain",
-          "template": "<#ffffff>via</> \ue781 {{ if .PackageManagerIcon }}{{ .PackageManagerIcon }} {{ end }}{{ .Full }} ",
-          "type": "node"
-        },
-        {
-          "type": "php",
-          "style": "powerline",
-          "foreground": "#7A86B8",
-          "background": "#000000",
-          "template": "  {{ .Full }} "
-        },
-        {
-          "type": "docker",
-          "style": "powerline",
-          "foreground": "#ffffff",
-          "background": "#000000",
-          "template": "\uf308 {{ .Context }}"
-        },
-        {
-          "foreground": "#85C980",
+          "foreground": "#bdc3c7",
           "style": "diamond",
           "template": "RAM:{{ (div .PhysicalAvailableMemory 1000000000.0) }}/{{ (div .PhysicalTotalMemory 1000000000.0) }}GB ",
           "trailing_diamond": " ",
           "type": "sysinfo"
         },
         {
-          "foreground": "#ffffff",
+          "foreground": "#ECEFF4",
           "leading_diamond": "\u250b",
           "properties": {
             "style": "roundrock",
@@ -92,7 +67,7 @@
         {
           "foreground": "#ffffff",
           "style": "plain",
-          "template": "$ ",
+          "template": "$",
           "type": "text"
         }
       ],
